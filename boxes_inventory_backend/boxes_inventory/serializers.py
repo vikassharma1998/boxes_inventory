@@ -1,12 +1,9 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.validators import UniqueValidator
-from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth import get_user_model
 
-#Serializer to Get User Details using Django Token Authentication
+
 class UserSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = User
-    fields = ["id", "first_name", "last_name", "username"]
+
+    class Meta:
+        model = get_user_model()
+        fields = "__all__"

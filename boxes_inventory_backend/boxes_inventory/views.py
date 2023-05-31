@@ -1,9 +1,16 @@
-from django.shortcuts import render
+from django.contrib.auth import get_user_model
 
-# Create your views here.
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
-def register(APIView):
-    pass
+from .serializers import UserSerializer
 
-def index(APIView):
-    pass
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    UserModel View.
+    """
+
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserSerializer
+    queryset = get_user_model().objects.all()
